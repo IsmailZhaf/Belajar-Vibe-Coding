@@ -1,8 +1,10 @@
 import { Elysia } from "elysia";
 import { db } from "./db";
 import { users } from "./db/schema";
+import { userRoute } from "./routes/user-route";
 
-const app = new Elysia()
+export const app = new Elysia()
+  .use(userRoute)
   .get("/", () => "Hello Elysia with Drizzle!")
   .get("/users", async () => {
     return await db.select().from(users);
